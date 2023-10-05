@@ -3,32 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>GroceryGO</title>
+    <title>EventGo</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/reset.css">
     <link rel="stylesheet" href="./css/mystyles.css">
     
   <style>.map{width:500px; height:500px;}</style>
 </head>
-<header>GroceryGO</header>
-<h2 class="slogan">Your one stop solution for grocery price comparison</h2>
-<h3 class="kroger-vs-walmart">Kroger Vs Walmart</h3>
-<body>
-    <div>
-        <div class="food-drink-section">
-            <!-- Food/Drinks Section -->
+<section class="section">
+    <div class="container">
+<span class="title has-text-centered">
+    EventGo
+</span>
+<section class="hero is-info">
+    <div class = "hero-body">
+        <div class = "container">
+           <h1 class = "title has-text-centered">
+            Your one stop solution for finding Events near you!
+           </h1>
+           <h2 class = "subtitle has-text-centered">
+            Sports, Plays, Movies and More!
+           </h2>
         </div>
-        <div class='cleaning-supplies-section'>
-            <!-- Cleaning Supplies Section -->
-        </div>
+     </div>
+</section>
     </div>
-    <div>
-        <h3> Here are prices of _____ in you local area:</h3>
-          <div class="map" id="map"></div>
-              <!-- Google map location -->
-              <span>Enter Zipcode Here</span>
-              <span>Enter Mile range Here</span>
+</section>
+<body>
+    <div class="dropdown is-hoverable">
+        <div class="dropdown-trigger">
+          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+            <span>Events</span>
+            <span class="icon is-small">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </button>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+          <div class="dropdown-content">
+            <a href="#" class="dropdown-item">
+              Sports
+            </a>
+            <a href="" class="dropdown-item">
+              Concerts
+            </a>
+            <a href="#" class="dropdown-item">
+              Musicals
+            </a>
+            <a href="#" class="dropdown-item">
+              Plays
+            </a>
+            <a href="#" class="dropdown-item">
+              Movies
+            </a>
           </div>
+        </div>
+      </div>
+    <div>
+
+        <h3 class="subtitle has-text-centered"> Here are prices of _____ in you local area:</h3>
+        <div class='container'>
+            <!-- Google map location -->
+            <div class="columns is-pulled-right" style = 'width:10%'>
+                <div class="column">
+                    <input class = "input is-small" size = '6' type = "text" placeholder = "Enter Zipcode">
+                    <input class = "input is-small" size = '6' type = "text" placeholder = "Enter Mile Range">
+                </div>
+            </div>
+        </div>
+
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmTPGNxBk41P75-i03O0R_pMFV3x3mOtw&callback=initMap" defer></script>
     <script src="./develop/script.js"></script>
