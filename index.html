@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/reset.css">
     <link rel="stylesheet" href="./css/mystyles.css">
+    
+  <style>.map{width:500px; height:500px;}</style>
 </head>
 <section class="section">
     <div class="container">
@@ -59,7 +61,6 @@
       </div>
     <div>
 
-
         <h3 class="subtitle has-text-centered"> Here are prices of _____ in you local area:</h3>
         <div class='container'>
             <!-- Google map location -->
@@ -70,6 +71,9 @@
                 </div>
             </div>
         </div>
+
     </div>
-</body>
-</html>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmTPGNxBk41P75-i03O0R_pMFV3x3mOtw&callback=initMap" defer></script>
+    <script src="./develop/script.js"></script>
+  </body>
+  </html>
