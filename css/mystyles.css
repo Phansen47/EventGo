@@ -1,0 +1,18 @@
+html {
+    background-image: url('../Img/img-background.jpg'); /* Use a relative path */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+
+.input {
+    top:400px;
+    right:100px;
+}
+
+.hero  {
+    background-color:#CF9FFF;
+}
+
