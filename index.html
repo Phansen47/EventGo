@@ -1,74 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EventGo</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="./css/mystyles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EventGo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="./css/mystyles.css">
 </head>
+
 <body class="container">
   <section class="section">
     <div class="container">
-<span class="title has-text-centered has-text-white is-size-1">
-    EventGo
-</span>
-<section class="hero">
-    <div class = "hero-body">
-        <div class = "container">
-           <h1 class = "title is-size-2 has-text-centered has-text-white">
-            Your one stop solution for finding Events near you!
-           </h1>
-           <h2 class = "subtitle has-text-centered is-size-3 has-text-white">
-            Sports, Film, Music and More!
-           </h2>
+      <span class="title has-text-centered has-text-white is-size-1">
+        EventGo
+      </span>
+      <section class="hero">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title is-size-2 has-text-centered has-text-white">
+              Your one stop solution for finding Events near you!
+            </h1>
+            <h2 class="subtitle has-text-centered is-size-3 has-text-white">
+              Sports, Film, Music and More!
+            </h2>
+          </div>
         </div>
-     </div>
-</section>
+      </section>
     </div>
-</section>
-        <h3 class="subtitle has-text-centered has-text-white"> Here are the _____ events in you local area:</h3>
-    <div class="dropdown event-dropdown is-hoverable ml-6">
-      <div class="dropdown-trigger">
-        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-          <span class="container ">Events</span>
-          <span class="icon is-small">
-            <i class="fas fa-angle-down" aria-hidden="true"></i>
-          </span>
-        </button>
-      </div>
-      <div class="dropdown-menu" id="dropdown-menu" role="menu">
-        <div class="dropdown-content">
-          <a href="#" class="dropdown-item">
-            Film
-          </a>
-          <a href="" class="dropdown-item">
-            Music
-          </a>
-          <a href="#" class="dropdown-item">
-            Sports
-          </a>
-          <a href="#" class="dropdown-item">
-            Miscellaneous
-          </a>
-        </div>
-      </div>
+  </section>
+  <!--  -->
+  <h3 class="subtitle has-text-centered has-text-white"> Here are the _____ events in you local area:</h3>
+  <div class="dropdown event-dropdown is-hoverable ml-6">
+    <div class="dropdown-trigger">
+      <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+        <span class="container ">Events</span>
+        <span class="icon is-small">
+          <i class="fas fa-angle-down" aria-hidden="true"></i>
+        </span>
+      </button>
     </div>
-  <div>
-<section>
-    <div class='container'>
-      <div id="map" class="map is-pulled-right"></div>
-      <style>.map{width:850px; height:500px;}</style>
-      <!-- Google map location -->
-      <div class="columns" style = 'width:9%'>
-        <div class="column is-overlay">
-              <input class = "input is-small is-rounded is-pulled-right" size = '4' type = "text" style="width:9%" placeholder = "Enter Zipcode"></input>
-              <input class = "input is-small is-rounded is-pulled-right" size = '4' type = "text" style="width:9%" placeholder = "Enter Mile Range"></input>
-        </div>
+    <!--  -->
+    <section id="search-history">
+      <ul id="history">
+        <h3 class="subtitle has-text-white">Search History:</h3>
+        <li id="history-list"></li>
+      </ul>
+    </section>
+    <!--  -->
+    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+      <div class="dropdown-content">
+        <a href="#" class="dropdown-item">
+          Film
+        </a>
+        <a href="" class="dropdown-item">
+          Music
+        </a>
+        <a href="#" class="dropdown-item">
+          Sports
+        </a>
+        <a href="#" class="dropdown-item">
+          Miscellaneous
+        </a>
+      </div>
     </div>
   </div>
-</section>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmTPGNxBk41P75-i03O0R_pMFV3x3mOtw&callback=initMap" defer></script>
+  </div>
+  <!--  -->
+    <section id="map-section" class="container">
+      <div id="map-container" class='container'>
+        <div id="map" class="map"></div>
+        <style>
+          .map {
+            width: 850px;
+            height: 500px;
+          }
+        </style>
+      </div>
+      <!--  -->
+      <div id="input-container" class="">
+        <div id="input-container-2" class="mx-auto">
+          <input id="input-field"class="input is-small is-rounded is-pulled-right" size='4' type="text" 
+            placeholder="Enter Zipcode"></input>
+          <input id="input-field" class="input is-small is-rounded is-pulled-right" size='4' type="text"
+            placeholder="Enter Mile Range"></input>
+        </div>
+    </section>
+    <!--  -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmTPGNxBk41P75-i03O0R_pMFV3x3mOtw&callback=initMap"
+      defer></script>
     <script src="./develop/script.js"></script>
-  </body>
-  </html>
+</body>
+
+</html>
