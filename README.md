@@ -31,8 +31,13 @@ GroceryGO is a grocery store price comparision web app for the thrifty shopper. 
 
 ![Wireframe of GroceryGO showing map and dropdownmenus](wireframe.png)
 
+kroger
 maaBpfJ7dJIj3DNYuIe3EmBHezUmMKT2WFqhLatU 
 
 
 	
 jykkYfu33ubU9el9d1M-UM0GedXJqGbNS-rrMeYK 
+
+## Credit
+* Background Image: https://www.vecteezy.com/members/101749449578448120165 
+main
