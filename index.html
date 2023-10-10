@@ -55,18 +55,10 @@
     <!--  -->
     <div class="dropdown-menu" id="dropdown-menu" role="menu">
       <div class="dropdown-content">
-        <a href="#" class="dropdown-item">
-          Film
-        </a>
-        <a href="" class="dropdown-item">
-          Music
-        </a>
-        <a href="#" class="dropdown-item">
-          Sports
-        </a>
-        <a href="#" class="dropdown-item">
-          Miscellaneous
-        </a>
+        <a href="#" class="dropdown-item" id="film-category">Film</a>
+        <a href="" class="dropdown-item" id="music-category">Music</a>
+        <a href="#" class="dropdown-item" id="sports-category">Sports</a>
+        <a href="#" class="dropdown-item" id="miscellaneous-category">Miscellaneous</a>
       </div>
     </div>
   </div>
@@ -85,18 +77,29 @@
       <!--  -->
       <div id="input-container" class="">
         <div id="input-container-2" class="mx-auto">
+
+          <input id="zipcode-input"class="input is-small is-rounded is-pulled-right" size='4' type="text" 
+            placeholder="Enter Zipcode"></input>
+          <input id="mile-range-input" class="input is-small is-rounded is-pulled-right" size='4' type="text"
+
           <input id="input-field"class="input is-small is-rounded " size='4' type="text" 
             placeholder="Enter Zipcode"></input>
           <input id="input-field" class="input is-small is-rounded " size='4' type="text"
+
             placeholder="Enter Mile Range"></input>
+          <button id="search-button" class="button is-primary is-small is-rounded" type="button">Search</button>
         </div>
     </section>
     <!--  -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmTPGNxBk41P75-i03O0R_pMFV3x3mOtw&callback=initMap"
       defer></script>
+
+    <script src="./develop/ticketmaster.js"></script>
+
     <script src="./develop/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="develop/ticketmaster.js"></script>
+
 
 </body>
 
