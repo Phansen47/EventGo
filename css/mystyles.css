@@ -15,8 +15,8 @@ html {
     display: flex !important;
     justify-content: center;
     /* align-items: center; */
-    margin-top: 30px;
-    margin-right: 50px;
+    margin-top: 10px;
+    margin-left: 50px;
 }
 /* #map-section {
     display: flex;
@@ -24,17 +24,30 @@ html {
     flex-direction: column;
 } */
 #input-container {
-    margin: 5px
+    margin-right:215px;
 }
 #input-container-2 {
     display: flex !important;
-    justify-content: center;
+    justify-content: flex-end;
     /* align-items: center; */
     flex-direction: row;
+
 }
 #input-field {
     width: 150px;
     margin: 5px;
 }
 
+#search-history {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: -80px;
+    margin-left: -98px;
+}
+
+#event-text{
+    display: flex;
+    justify-content: center;
+
+}
 /* map in middle history on top events in a row, input fields in row not recommended to have it overlay  */
