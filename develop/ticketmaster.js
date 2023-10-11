@@ -1,4 +1,3 @@
-
 let selectedCategory = 'null';
 
 // Get references to the category links using their IDs
@@ -133,15 +132,12 @@ mileRangeInput.addEventListener("input", function(event) {
   });
 }
 
-
-
 /* "key": "MHMzpmenH0Zry7zmECgCD2HpZ1X9Bnuy" */
 /* "secret" : eAGGGehkgI9ZqwyI */
 
 /*  
 id: 'KZFzniwnSyZfZ7v7nn', name: 'Film'
 id: 'KZFzniwnSyZfZ7v7n1', name: 'Miscellaneous'
-
 id: 'KZFzniwnSyZfZ7v7nE', name: 'Sports'KZFzniwnSyZfZ7v7nE
 id: 'KZFzniwnSyZfZ7v7nJ', name: 'Music'
 */
@@ -238,6 +234,9 @@ function fetchEventData(enteredZipcode, enteredMileRange, selectedCategoryId) {
           console.log(map)
           console.log(eventInfoArray)
           console.log(selectedCategoryId)
+          localStorage.setItem('savedZipcode', enteredZipcode);
+          savedZipcode = enteredZipcode;
+          addSavedZipcodeToHistory(savedZipcode);
           addMarkersToMap(map, eventInfoArray, selectedCategoryId);
         } else {
           console.log('No events found for the given postal code.');
@@ -248,37 +247,22 @@ function fetchEventData(enteredZipcode, enteredMileRange, selectedCategoryId) {
     .catch(error => {
       console.error('Error fetching event data:', error);
     });
-    /*
-      fetch(url)
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(data) {
-        console.log(data);
-      })
-      .catch(function(error) {
-        console.log(error);
+    }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const searchButton = document.getElementById("search-button");
+
+        searchButton.addEventListener("click", function () {
+
+          if (enteredZipcode.length === 5 && enteredMileRange !== "0" && selectedCategory !== 'null') {
+            // Call the fetchEventData function with the entered values
+            selectedCategoryId = categoryToIdMap[selectedCategory];
+            fetchEventData(enteredZipcode, enteredMileRange, selectedCategoryId);
+          } else {
+            console.log('Invalid input. Please check entered values.');
+          }
+        });
       });
-    } else {
-      console.log('Entered zipcode or mile range is zero. Skipping fetch.');
-      
-      USED FOR PARSING*/ 
-    }
-
-document.addEventListener("DOMContentLoaded", function () {
-  const searchButton = document.getElementById("search-button");
-
-  searchButton.addEventListener("click", function () {
-
-    if (enteredZipcode.length === 5 && enteredMileRange !== "0" && selectedCategory !== 'null') {
-      // Call the fetchEventData function with the entered values
-      selectedCategoryId = categoryToIdMap[selectedCategory];
-      fetchEventData(enteredZipcode, enteredMileRange, selectedCategoryId);
-    } else {
-      console.log('Invalid input. Please check entered values.');
-    }
-  });
-});
 
 window.initMap = initMap;
 
@@ -286,68 +270,30 @@ document.addEventListener("DOMContentLoaded", function () {
   initMap();
 });
 
-id: 'KZFzniwnSyZfZ7v7nE', name: 'Sports'
-id: 'KZFzniwnSyZfZ7v7nJ', name: 'Music'
-*/
-  var postalCodeVar = 84044;
-  var radius = "100"; // Set the search radius to 100 miles (adjust as needed)
-  var url = `https://app.ticketmaster.com/discovery/v2/events.json?size=20&postalCode=${postalCodeVar}&radius=${radius}&apikey=MHMzpmenH0Zry7zmECgCD2HpZ1X9Bnuy`;
+// Assume you have a saved ZIP code
+var savedZipcode = "12345"; // Replace with your actual saved ZIP code
 
-  const eventInfoArray = [];
+// Function to add a button with the saved ZIP code to the history list
+function addSavedZipcodeToHistory(zipcode) {
+  // Create a new list item element
+  const listItem = document.createElement("li");
 
-  fetch(url)
-  .then(response => response.json())
-  .then(data => {
-    if (data._embedded && data._embedded.events && data._embedded.events.length > 0) {
-      // Extract event information from the response
-      const events = data._embedded.events;
-    
-      // Loop through events and extract name, latitude, and longitude
-      events.forEach(event => {
-        const eventName = event.name;
-        const venues = event._embedded.venues; // Get all venues for the event
-    
-        venues.forEach(venue => {
-          const latitude = venue.location.latitude;
-          const longitude = venue.location.longitude;
-          const localDate = event.dates.start.localDate;
-          const localTime = event.dates.start.localTime;
-          
-    
-          console.log(`Event Name: ${eventName}`);
-          console.log(`Venue Latitude: ${latitude}`);
-          console.log(`Venue Longitude: ${longitude}`);
-          console.log(`Local Date: ${localDate}`);
-          console.log(`Local Time: ${localTime}`);
-          console.log('--------------------------');
-
-          const eventInfo = {
-            eventName,
-            latitude,
-            longitude,
-            localDate,
-            localTime,
-          };
-          eventInfoArray.push(eventInfo);
-        });
-      });
-      console.log(eventInfoArray);
-    } else {
-      console.log('No events found for the given postal code.');
-    }
-  })
-  .catch(error => {
-    console.error('Error fetching event data:', error);
+  // Create a button element for the saved ZIP code
+  const button = document.createElement("button");
+  button.textContent = zipcode;
+  button.className = "button is-small is-rounded";
+  
+  // Add a click event listener to the button to populate the ZIP code input
+  button.addEventListener("click", function() {
+    document.getElementById("zipcode-input").value = zipcode;
   });
 
-    fetch(url)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
-      console.log(data);
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
+  // Append the button to the list item
+  listItem.appendChild(button);
 
+  // Append the list item to the history list
+  document.getElementById("history-list").appendChild(listItem);
+}
+
+// Add the saved ZIP code to the history
+addSavedZipcodeToHistory(savedZipcode);

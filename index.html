@@ -14,9 +14,9 @@
 <body class="container">
   <section class="section">
     <div class="container">
-      <span class="title has-text-centered has-text-white is-size-1">
+      <header class="title has-text-centered has-text-white is-size-1">
         EventGo
-      </span>
+      </header>
       <section class="hero">
         <div class="hero-body">
           <div class="container">
@@ -34,58 +34,61 @@
   <!--  -->
   <h3 id='event-text'  class="subtitle has-text-centered has-text-white"> Here are the _____ events in you local area:</h3>
   <!--  -->
-  <div class="dropdown event-dropdown is-hoverable ml-6">
-    <div class="dropdown-trigger">
-      <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-        <span class="container ">Events</span>
-        <span class="icon is-small">
-          <i class="fas fa-angle-down" aria-hidden="true"></i>
-        </span>
-      </button>
-    </div>
-
-
-    <!--  -->
-    <section id="search-history">
-      <ul id="history">
-        <h3 class="subtitle has-text-white">Search History:</h3>
-        <li id="history-list"></li>
-      </ul>
-    </section>
-    <!--  -->
-    <div class="dropdown-menu" id="dropdown-menu" role="menu">
-      <div class="dropdown-content">
-        <a href="#" class="dropdown-item" id="film-category">Film</a>
-        <a href="" class="dropdown-item" id="music-category">Music</a>
-        <a href="#" class="dropdown-item" id="sports-category">Sports</a>
-        <a href="#" class="dropdown-item" id="miscellaneous-category">Miscellaneous</a>
+  <div class="columns">
+    <!-- Column 1: Events Dropdown -->
+    <div class="column is-one-fifth">
+      <div class="dropdown event-dropdown is-hoverable ml-6">
+        <div class="dropdown-trigger">
+          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+            <span class="container">Events</span>
+            <span class="icon is-small">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </button>
+        </div>
+  
+        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+          <div class="dropdown-content">
+            <a href="#" class="dropdown-item" id="film-category">Film</a>
+            <a href="#" class="dropdown-item" id="music-category">Music</a>
+            <a href="#" class="dropdown-item" id="sports-category">Sports</a>
+            <a href="#" class="dropdown-item" id="miscellaneous-category">Miscellaneous</a>
+          </div>
+        </div>
       </div>
     </div>
+  
+    <!-- Column 2: Map -->
+    <div class="column is-three-fifths">
+      <section id="map-section" class="container">
+        <div id="map-container" class='container'>
+          <div id="map" class="map"></div>
+          <style>
+            .map {
+              width: 850px;
+              height: 500px;
+            }
+          </style>
+        </div>
+      </section>
+    </div>
+  
+    <!-- Column 3: Saved Searches -->
+    <div class="column is-one-fifth">
+      <section id="search-history">
+        <ul id="history">
+          <h3 class="subtitle has-text-white">Search History:</h3>
+          <li id="history-list"></li>
+        </ul>
+      </section>
+    </div>
   </div>
-  </div>
-  <!--  -->
-    <section id="map-section" class="container">
-      <div id="map-container" class='container'>
-        <div id="map" class="map"></div>
-        <style>
-          .map {
-            width: 850px;
-            height: 500px;
-          }
-        </style>
-      </div>
       <!--  -->
       <div id="input-container" class="">
         <div id="input-container-2" class="mx-auto">
-
           <input id="zipcode-input"class="input is-small is-rounded is-pulled-right" size='4' type="text" 
             placeholder="Enter Zipcode"></input>
           <input id="mile-range-input" class="input is-small is-rounded is-pulled-right" size='4' type="text"
-
-          <input id="input-field"class="input is-small is-rounded " size='4' type="text" 
-            placeholder="Enter Zipcode"></input>
-          <input id="input-field" class="input is-small is-rounded " size='4' type="text"
-
             placeholder="Enter Mile Range"></input>
           <button id="search-button" class="button is-primary is-small is-rounded" type="button">Search</button>
         </div>
@@ -95,12 +98,6 @@
       defer></script>
 
     <script src="./develop/ticketmaster.js"></script>
-
-    <script src="./develop/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="develop/ticketmaster.js"></script>
-
-
 </body>
-
 </html>

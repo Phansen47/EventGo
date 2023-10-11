@@ -16,16 +16,12 @@ html {
     justify-content: center;
     /* align-items: center; */
     margin-top: 10px;
-    margin-left: 50px;
 }
 /* #map-section {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
 } */
-#input-container {
-    margin-right:215px;
-}
 #input-container-2 {
     display: flex !important;
     justify-content: flex-end;
@@ -36,13 +32,6 @@ html {
 #input-field {
     width: 150px;
     margin: 5px;
-}
-
-#search-history {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: -80px;
-    margin-left: -98px;
 }
 
 #event-text{
