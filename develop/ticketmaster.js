@@ -6,6 +6,7 @@ const musicCategoryLink = document.getElementById("music-category");
 const sportsCategoryLink = document.getElementById("sports-category");
 const miscellaneousCategoryLink = document.getElementById("miscellaneous-category");
 
+// Translates user inputs and readable terms to their category IDs
 var categoryToIdMap = {
   'Film': 'KZFzniwnSyZfZ7v7nn',
   'Miscellaneous': 'KZFzniwnSyZfZ7v7n1',
@@ -14,6 +15,8 @@ var categoryToIdMap = {
 };
 
 var selectedCategoryId = categoryToIdMap[selectedCategory];
+
+// Definign eventlisters for each of the four categories a user can select
 
 filmCategoryLink.addEventListener("click", function(event) {
   event.preventDefault(); // Prevent the default link behavior
@@ -71,7 +74,7 @@ function initMap() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
-  // Create a variable to store the map object for later use
+  // Create a variable to store the map object
   let mapInstance = map;
 
   // Function to update the map based on Zipcode
@@ -112,7 +115,7 @@ function calculateZoomLevel(enteredMileRange) {
 
   return Math.min(Math.max(zoomLevel, 1), 20);
 }
-
+   // Add an event listener to capture user input  for mile range and update the map
 mileRangeInput.addEventListener("input", function(event) {
   enteredMileRange = event.target.value;
   console.log("Entered Mile Range: " + enteredMileRange);
@@ -121,33 +124,25 @@ mileRangeInput.addEventListener("input", function(event) {
   const zoomLevel = calculateZoomLevel(enteredMileRange);
   console.log('Zoom Level:', zoomLevel);
 
-  // Update the map with the new zoom level
   updateMapWithZipcode(enteredZipcode, zoomLevel);
 });
 
-  // Add an event listener to capture user input and update the map
+  // Add an event listener to capture user input  for zipcode and update the map
   zipcodeInput.addEventListener('input', function () {
     const enteredZipcode = zipcodeInput.value;
     updateMapWithZipcode(enteredZipcode);
   });
 }
 
-/* "key": "MHMzpmenH0Zry7zmECgCD2HpZ1X9Bnuy" */
-/* "secret" : eAGGGehkgI9ZqwyI */
 
-/*  
-id: 'KZFzniwnSyZfZ7v7nn', name: 'Film'
-id: 'KZFzniwnSyZfZ7v7n1', name: 'Miscellaneous'
-id: 'KZFzniwnSyZfZ7v7nE', name: 'Sports'KZFzniwnSyZfZ7v7nE
-id: 'KZFzniwnSyZfZ7v7nJ', name: 'Music'
-*/
+
+// Google Map markers - this section tells the Google Maps API to add markers to where events are and what to do when moused over
 function addMarkersToMap(map, eventInfoArray, selectedCategoryId) {
-  const infoWindows = []; // Create an array to store InfoWindow instances
+  const infoWindows = [];
   console.log(map);
   eventInfoArray.forEach((eventInfo) => {
     const { latitude, longitude, eventName, eventCategory } = eventInfo;
 
-    // Check if the eventCategory matches the selectedCategory
     if (eventCategory == selectedCategoryId) {
       const marker = new google.maps.Marker({
         position: { lat: latitude, lng: longitude },
@@ -156,21 +151,19 @@ function addMarkersToMap(map, eventInfoArray, selectedCategoryId) {
       });
       console.log(map);
 
-      // Create an InfoWindow with the event name content
       const infoWindow = new google.maps.InfoWindow({
         content: eventName,
       });
 
-      // Store the InfoWindow instance in the array
       infoWindows.push(infoWindow);
 
       // Add event listeners to the marker
       marker.addListener('mouseover', () => {
-        infoWindow.open(map, marker); // Open the InfoWindow when hovering
+        infoWindow.open(map, marker);
       });
 
       marker.addListener('mouseout', () => {
-        infoWindow.close(); // Close the InfoWindow when no longer hovering
+        infoWindow.close();
       });
     } else {
       console.log(eventCategory);
@@ -178,6 +171,7 @@ function addMarkersToMap(map, eventInfoArray, selectedCategoryId) {
   });
 }
 
+// Ticketmaster data function - this handles finding event information based on the inputs of the geographic parameters and selected category
 function fetchEventData(enteredZipcode, enteredMileRange, selectedCategoryId) {
     var url = `https://app.ticketmaster.com/discovery/v2/events.json?size=100&postalCode=${enteredZipcode}&enteredMileRange=${enteredMileRange}&apikey=MHMzpmenH0Zry7zmECgCD2HpZ1X9Bnuy`;
 
@@ -193,7 +187,7 @@ function fetchEventData(enteredZipcode, enteredMileRange, selectedCategoryId) {
           // Loop through events and extract name, latitude, and longitude
           events.forEach(event => {
             const eventName = event.name;
-            const venues = event._embedded.venues; // Get all venues for the event
+            const venues = event._embedded.venues; 
             const classifications = event.classifications;
 
             const segmentIds = [];
@@ -219,7 +213,8 @@ function fetchEventData(enteredZipcode, enteredMileRange, selectedCategoryId) {
               console.log(`Local Date: ${localDate}`);
               console.log(`Local Time: ${localTime}`);
               console.log('--------------------------');
-
+            
+            // Create new array of only the information we need
               const eventInfo = {
                 eventName,
                 latitude,
@@ -249,13 +244,13 @@ function fetchEventData(enteredZipcode, enteredMileRange, selectedCategoryId) {
     });
     }
 
+// Search button listener and functionality
       document.addEventListener("DOMContentLoaded", function () {
         const searchButton = document.getElementById("search-button");
 
         searchButton.addEventListener("click", function () {
 
           if (enteredZipcode.length === 5 && enteredMileRange !== "0" && selectedCategory !== 'null') {
-            // Call the fetchEventData function with the entered values
             selectedCategoryId = categoryToIdMap[selectedCategory];
             fetchEventData(enteredZipcode, enteredMileRange, selectedCategoryId);
           } else {
@@ -270,6 +265,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initMap();
 });
 
+// Modal section - this section handles the creation and usablity of the modals
   function openModal($el) {
     $el.classList.add('is-active');
   }
@@ -283,8 +279,6 @@ document.addEventListener("DOMContentLoaded", function () {
       closeModal($modal);
     });
   }
-
-  // Add a click event on buttons to open a specific modal
   (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
     const modal = $trigger.dataset.target;
     const $target = document.getElementById(modal);
@@ -294,7 +288,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Add a click event on various child elements to close the parent modal
   (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
     const $target = $close.closest('.modal');
 
@@ -303,35 +296,28 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Add a keyboard event to close all modals
   document.addEventListener('keydown', (event) => {
     if (event.code === 'Escape') {
       closeAllModals();
     }
   });
 
-// Assume you have a saved ZIP code
-var savedZipcode = "12345"; // Replace with your actual saved ZIP code
+// Saved zipcode information
+var savedZipcode = "12345";
 
-// Function to add a button with the saved ZIP code to the history list
 function addSavedZipcodeToHistory(zipcode) {
-  // Create a new list item element
   const listItem = document.createElement("li");
 
-  // Create a button element for the saved ZIP code
   const button = document.createElement("button");
   button.textContent = zipcode;
   button.className = "button is-small is-rounded";
   
-  // Add a click event listener to the button to populate the ZIP code input
   button.addEventListener("click", function() {
     document.getElementById("zipcode-input").value = zipcode;
   });
 
-  // Append the button to the list item
   listItem.appendChild(button);
 
-  // Append the list item to the history list
   document.getElementById("history-list").appendChild(listItem);
 }
 

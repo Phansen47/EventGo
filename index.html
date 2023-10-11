@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+  <!-- Intial connectinos to css and Bulma-->
+
 <head>
 
   <meta charset="UTF-8">
@@ -14,6 +16,8 @@
 <body class="container">
   <section class="section">
     <div class="container">
+      
+  <!-- Header-->
       <header class="title has-text-centered has-text-white is-size-1">
         EventGo
       </header>
@@ -31,9 +35,8 @@
       </section>
     </div>
   </section>
-  <!--  -->
-  <h3 id='event-text'  class="subtitle has-text-centered has-text-white"> Here are the _____ events in you local area:</h3>
-  <!--  -->
+  <!-- Subheader-->
+  <h3 id='event-text'  class="subtitle has-text-centered has-text-white"> Here are the _____ events in you local area:</h3>\
   <div class="columns">
     <!-- Column 1: Events Dropdown -->
     <div class="column is-one-fifth">
@@ -87,14 +90,13 @@
   <div id="custom-modal" class="modal">
     <div class="modal-background"></div>
     <div class="modal-content">
-      <!-- Add your custom modal content here -->
       <div class="box">
         <p>No events found for the given postal code.</p>
       </div>
     </div>
     <button class="modal-close is-large" aria-label="close"></button>
   </div>
-      <!--  -->
+      <!-- Input Containers for mile range and zipcode  -->
       <div id="input-container" class="">
         <div id="input-container-2" class="mx-auto">
           <input id="zipcode-input"class="input is-small is-rounded is-pulled-right" size='4' type="text" 
@@ -104,10 +106,9 @@
           <button id="search-button" class="button is-primary is-small is-rounded" type="button">Search</button>
         </div>
     </section>
-    <!--  -->
+    <!-- Connections to Googlemaps API, jquery and javascript-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmTPGNxBk41P75-i03O0R_pMFV3x3mOtw&callback=initMap"
       defer></script>
-
     <script src="./develop/ticketmaster.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
